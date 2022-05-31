@@ -4,12 +4,14 @@ from dotenv import load_dotenv
 def load_variables():
     """Load up env variables of the API key & location"""
     env_var=load_dotenv('./variables.env')
-    auth_dict = {"text_analytics_key":os.environ['TEXT_ANALYTICS_KEY']}
+    auth_dict = {"text_analytics_key":os.environ['TEXT_ANALYTICS_KEY'],
+            "text_analytics_location":os.environ['TEXT_ANALYTICS_LOCATION']}
     return auth_dict
 
 env_variables_dict = load_variables()
 # Don't forget to replace with your Cog Services subscription key!
 subscription_key = env_variables_dict['text_analytics_key']
+location = env_variables_dict['text_analytics_location']
 
 # Our Flask route will supply four arguments: input_text, input_language,
 # output_text, output_language.
@@ -24,6 +26,7 @@ def get_sentiment(input_text, input_language, output_text, output_language):
 
     headers = {
         'Ocp-Apim-Subscription-Key': subscription_key,
+        'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }
