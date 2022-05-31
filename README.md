@@ -16,8 +16,8 @@ For those of you who want to deep dive after this tutorial here are a few helpfu
 3. Run `make infra` at the root directory, using the Makefile.
 > This will create the translator resource, the speech resource and the text analytics resource, and save the
 relevant keys to the `variables.env` file.
-4. Run `make setup` to install the relevant third-party dependencies, including the `requests` library, the
-   `python-dotenv` library for handling environment variables and the `flask` library.
+4. Run `make setup` to install the relevant third-party libraries.
+> This will install the `requests` library, the `python-dotenv` library for handling environment variables and the `flask` library.
 5. To validate the flask install, run `flask --version`.
 6. Run the flask app by executing the following at the command line:
 	1. `export FLASK_APP=app.py`
