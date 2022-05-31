@@ -1,9 +1,20 @@
 import os, requests, time
 from xml.etree import ElementTree
+from dotenv import load_dotenv
+
+def load_variables():
+    """Load up env variables of the API key & location"""
+    env_var=load_dotenv('./variables.env')
+    auth_dict = {"speech_key":os.environ['SPEECH_KEY']}
+    return auth_dict
+
+env_variables_dict = load_variables()
+# Don't forget to replace with your Cog Services subscription key!
+subscription_key = env_variables_dict['speech_key']
 
 class TextToSpeech(object):
     def __init__(self, input_text, voice_font):
-        subscription_key = 'YOUR_SPEECH_SERVICES_SUBSCRIPTION_KEY'
+        #subscription_key = 'YOUR_SPEECH_SERVICES_SUBSCRIPTION_KEY'
         self.subscription_key = subscription_key
         self.input_text = input_text
         self.voice_font = voice_font

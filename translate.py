@@ -1,8 +1,19 @@
-import os, requests, uuid, json
+import os
+import requests
+import uuid
+import json
+from dotenv import load_dotenv
 
+def load_variables():
+    """Load up env variables of the API key & location"""
+    env_var=load_dotenv('./variables.env')
+    auth_dict = {"translator_key":os.environ['TRANSLATOR_NAME']}
+    return auth_dict
+
+env_variables_dict = load_variables()
 # Don't forget to replace with your Cog Services subscription key!
 # If you prefer to use environment variables, see Extra Credit for more info.
-subscription_key = 'YOUR_TRANSLATOR_TEXT_SUBSCRIPTION_KEY'
+subscription_key = env_variables_dict['translator_key']
 
 # Our Flask route will supply two arguments: text_input and language_output.
 # When the translate text button is pressed in our Flask app, the Ajax request

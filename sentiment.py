@@ -1,7 +1,15 @@
 import os, requests, uuid, json
+from dotenv import load_dotenv
 
+def load_variables():
+    """Load up env variables of the API key & location"""
+    env_var=load_dotenv('./variables.env')
+    auth_dict = {"text_analytics_key":os.environ['TEXT_ANALYTICS_KEY']}
+    return auth_dict
+
+env_variables_dict = load_variables()
 # Don't forget to replace with your Cog Services subscription key!
-subscription_key = 'YOUR_TEXT_ANALYTICS_SUBSCRIPTION_KEY'
+subscription_key = env_variables_dict['text_analytics_key']
 
 # Our Flask route will supply four arguments: input_text, input_language,
 # output_text, output_language.
