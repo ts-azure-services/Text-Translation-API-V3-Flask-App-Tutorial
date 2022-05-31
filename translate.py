@@ -7,13 +7,15 @@ from dotenv import load_dotenv
 def load_variables():
     """Load up env variables of the API key & location"""
     env_var=load_dotenv('./variables.env')
-    auth_dict = {"translator_key":os.environ['TRANSLATOR_NAME']}
+    auth_dict = {"translator_key":os.environ['TRANSLATOR_KEY'],
+            "translator_location":os.environ['TRANSLATOR_LOCATION']}
     return auth_dict
 
 env_variables_dict = load_variables()
 # Don't forget to replace with your Cog Services subscription key!
 # If you prefer to use environment variables, see Extra Credit for more info.
 subscription_key = env_variables_dict['translator_key']
+location = env_variables_dict['translator_location']
 
 # Our Flask route will supply two arguments: text_input and language_output.
 # When the translate text button is pressed in our Flask app, the Ajax request
@@ -27,6 +29,7 @@ def get_translation(text_input, language_output):
 
     headers = {
         'Ocp-Apim-Subscription-Key': subscription_key,
+        'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }
