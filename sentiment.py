@@ -11,7 +11,6 @@ def load_variables():
     return auth_dict
 
 env_variables_dict = load_variables()
-# Don't forget to replace with your Cog Services subscription key!
 subscription_key = env_variables_dict['text_analytics_key']
 location = env_variables_dict['text_analytics_location']
 resource_name = env_variables_dict['text_analytics_name']
@@ -24,13 +23,12 @@ resource_name = env_variables_dict['text_analytics_name']
 
 def get_sentiment(input_text, input_language, output_text, output_language):
     #base_url = 'https://westus.api.cognitive.microsoft.com/text/analytics'
-    base_url = f'https://{resource_name}.cognitiveservices.azure.com/'
-    path = '/v2.0/sentiment'
+    base_url = f'https://{resource_name}.cognitiveservices.azure.com/text/analytics'
+    path = '/v3.1/sentiment'
     constructed_url = base_url + path
 
     headers = {
         'Ocp-Apim-Subscription-Key': subscription_key,
-        'Ocp-Apim-Subscription-Region': location,
         'Content-type': 'application/json',
         'X-ClientTraceId': str(uuid.uuid4())
     }

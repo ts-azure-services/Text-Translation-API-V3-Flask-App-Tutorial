@@ -5,12 +5,14 @@ from dotenv import load_dotenv
 def load_variables():
     """Load up env variables of the API key & location"""
     env_var=load_dotenv('./variables.env')
-    auth_dict = {"speech_key":os.environ['SPEECH_KEY']}
+    auth_dict = {"speech_key":os.environ['SPEECH_KEY'],
+            "speech_name":os.environ['SPEECH_NAME']}
     return auth_dict
 
 env_variables_dict = load_variables()
 # Don't forget to replace with your Cog Services subscription key!
 subscription_key = env_variables_dict['speech_key']
+speech_name = env_variables_dict['speech_name']
 
 class TextToSpeech(object):
     def __init__(self, input_text, voice_font):
@@ -23,23 +25,21 @@ class TextToSpeech(object):
 
     # This function performs the token exchange.
     def get_token(self):
-        fetch_token_url = 'https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken'
-        headers = {
-            'Ocp-Apim-Subscription-Key': self.subscription_key
-        }
+        fetch_token_url = 'https://westus2.api.cognitive.microsoft.com/sts/v1.0/issueToken'
+        headers = {'Ocp-Apim-Subscription-Key': self.subscription_key}
         response = requests.post(fetch_token_url, headers=headers)
         self.access_token = str(response.text)
 
     # This function calls the TTS endpoint with the access token.
     def save_audio(self):
-        base_url = 'https://westus.tts.speech.microsoft.com/'
+        base_url = 'https://westus2.tts.speech.microsoft.com/'
         path = 'cognitiveservices/v1'
         constructed_url = base_url + path
         headers = {
             'Authorization': 'Bearer ' + self.access_token,
             'Content-Type': 'application/ssml+xml',
             'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
-            'User-Agent': 'YOUR_RESOURCE_NAME',
+            'User-Agent': f'{speech_name}',
         }
         # Build the SSML request with ElementTree
         xml_body = ElementTree.Element('speak', version='1.0')
