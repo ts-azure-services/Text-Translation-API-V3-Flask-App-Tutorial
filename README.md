@@ -106,6 +106,7 @@ Next we need to install Flask. Flask handles the routing for our web app, and al
    **macOS/Linux**:
    ```
    export FLASK_APP=app.py
+   export FLASK_DEBUG=1
    ```
 
    **Windows**:
@@ -126,12 +127,7 @@ Now that you're all set up, follow these instructions to run the sample. If you'
    ```
 5. Navigate to the URL provided and test your app.
 
-## Clean up
-
-When you're done with the sample, don't forget to remove your subscription keys. Consider reading from environment variables.
-
 ## Next steps
-
 * [Translator Text API reference](https://docs.microsoft.com/azure/cognitive-services/Translator/reference/v3-0-reference)
 * [Text Analytics API reference](https://westus.dev.cognitive.microsoft.com/docs/services/TextAnalytics.V2.0/operations/56f30ceeeda5650db055a3c7)
 * [Text-to-speech API reference](https://docs.microsoft.com/azure/cognitive-services/speech-service/rest-text-to-speech)

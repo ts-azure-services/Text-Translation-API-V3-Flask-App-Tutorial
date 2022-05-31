@@ -3,6 +3,7 @@ import translate, sentiment, synthesize
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+#app.debug = True
 
 @app.route('/')
 def index():
