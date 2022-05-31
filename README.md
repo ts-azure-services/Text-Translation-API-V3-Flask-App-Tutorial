@@ -17,12 +17,13 @@ For those of you who want to deep dive after this tutorial here are a few helpfu
 > This will use the Makefile to create the translator resource, the
    speech resource and the text analytics resource, and save the relevant keys to the `variables.env` file.
 4. Run `make setup` at the root directory to install the relevant third-party libraries. 
-> This will install
-   the `requests` library, the `python-dotenv` library for handling environment variables and the `flask`
-   library.
-5. To validate the flask install, run `flask --version`.
-6. Run the flask app by executing the following at the command line:
+> This will install the `requests` library, the `python-dotenv` library for handling environment variables and the `flask` library.
+5. Before triggering the following steps, go into the Azure Portal and make sure that `Generate Custom Domain
+   Name` is clicked. If resources are created through the CLI, this can be often be a required additional
+   manual step.
+6. To validate the flask install, run `flask --version`.
+7. Run the flask app by executing the following at the command line:
 	1. `export FLASK_APP=app.py`
 	2. `export FLASK_DEBUG=1`
-7. To run the flask app, execute `flask run`.
-8. Navigate to the URL provided and test your app.
+8. To run the flask app, execute `flask run`.
+9. Navigate to the URL provided and test your app.
